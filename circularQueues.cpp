@@ -6,3 +6,7 @@ class Queues {
     int queue_array[5];
 
 public:
+    Queues() {
+        FRONT = -1;
+        REAR = -1;
+    }
