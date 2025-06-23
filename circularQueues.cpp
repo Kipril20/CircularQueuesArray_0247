@@ -1,19 +1,66 @@
+/**
+ * @mainpage Documentation circular Queues
+ * 
+ * @section Introduction
+ * This project from structur data
+ * this project use structur data queues, implements circular arrays.
+ * 
+ * @section Operations
+ * - en queues for insert elements into queues
+ * - de queues for insert elements from queues
+ * - show data
+ * 
+ * @section How to use
+ * 1. Insert
+ * 2. Delete
+ * 3. Display
+ * 4. Exit
+ * 
+ * @author yProfil
+ * - Nama   : Rafky Ferdiansyah
+ * - NIM    : 20240140247
+ * - Kelas  : TI E
+ * 
+ * @brief 
+ * @version 0.1
+ * @date 2025-06-23
+ * 
+ * @copyright Gibran@umy.ac.id (c) 2025
+ * 
+ */
+
 #include <iostream>
 using namespace std;
 
+/**
+ * @class Queues
+ * @brief This class is for operation queues
+ * 
+ */
 class Queues {
 private:
-    int FRONT, REAR, max = 5;
-    int queue_array[5];
+    int FRONT; /// private variable front for indicate first element
+    int REAR; /// private variable rear forr indicate the last element
+    int max = 5; /// private variable max for maximum capacity of element
+    int queue_array[5]; /// private variable queue_array to store elements
 
 public:
+    /**
+     * @brief Construct a new Queues object
+     * set default queues null
+     * with front = -1 and rear = -1
+     */
     Queues() {
         FRONT = -1;
         REAR = -1;
     }
 
-    void insert() {
-        int num;
+    /**
+     * @brief method for entering data into a queue
+     * This procedur print a message to the screen from the user
+     */
+    void insert() { /// This function is for insert a number into queue
+        int num; /// Variable to store numeric input from the user
         cout << "Enter a number: ";
         cin >> num;
         cout << endl;
@@ -39,7 +86,11 @@ public:
         queue_array [REAR] = num;
     }
 
-    void remove() {
+    /**
+     * @brief Method for delete front element from the queue
+     * Delete and displays the element at the front if not empty
+     */
+    void remove() { /// 
         // Cek apakah antrian kosong
         if (FRONT == -1) {
             cout << "Queue underflow\n";
@@ -61,9 +112,13 @@ public:
         }
     }
 
-    void display() {
-        int FRONT_position = FRONT;
-        int REAR_position = REAR;
+    /**
+     * @brief Method for display all elements in the queue
+     * Display data from front to rear according to queue order
+     */
+    void display() { /// Display the contents of the queue without changing the original value of front
+        int FRONT_position = FRONT; /// The proccess of tracking queue elements
+        int REAR_position = REAR; /// Copy of the rear position of the queue for the element tracing proccess
 
         // Cek apakah antrian kosong
         if (FRONT == -1) {
@@ -100,9 +155,61 @@ public:
     }
 };
 
+/**
+ * @brief The main function for running queue operations
+ * 
+ * @return int
+ */
 int main()
 {
     Queues q;
     char ch;
 
     while (true)
+    {
+        try
+        {
+            cout << "Menu" << endl;
+            cout << "1. Implement insert operation" << endl;
+            cout << "2. Implement delete operation" << endl;
+            cout << "3. Display values" << endl;
+            cout << "4. Exit" << endl;
+            cout << "Enter yout choice (1-4): ";
+            cin >> ch;
+            cout << endl;
+
+            switch(ch)
+            {
+            case '1':
+            {
+
+                q.insert();
+                break;
+            }
+            case '2':
+            {
+                q.remove();
+                break;
+            }
+            case '3':
+            {
+                q.display();
+                break;
+            }
+            case '4':
+            {
+                return 0;
+            }
+            default:
+            {
+                cout << "Invalid option!!" << endl;
+                break;
+            }
+            }
+        }
+        catch (exception &e)
+        {
+            cout << "Check for the values entered." << endl;
+        }
+    }
+}
